@@ -16,12 +16,10 @@ project "GLFW"
 		"src/init.c",
 		"src/input.c",
 		"src/monitor.c",
-
 		"src/null_init.c",
 		"src/null_joystick.c",
 		"src/null_monitor.c",
 		"src/null_window.c",
-
 		"src/platform.c",
 		"src/vulkan.c",
 		"src/window.c",
@@ -102,21 +100,6 @@ project "GLFW"
 		runtime "Debug"
 		symbols "On"
 
-	filter { "system:windows", "configurations:Debug-AS" }	
-		runtime "Debug"
-		symbols "On"
-
-		sanitize
-		{
-			"Address" 
-		}
-
-		flags 
-		{
-			"NoRuntimeChecks",
-			"NoIncrementalLink"
-		}
-
 	filter "configurations:Release"
 		runtime "Release"
 		optimize "Speed"
@@ -124,4 +107,18 @@ project "GLFW"
     filter "configurations:Ship"
 		runtime "Release"
 		optimize "Speed"
-        symbols "Off"
+		
+    filter { "system:windows", "configurations:Debug-AS" }	
+        runtime "Debug"
+        symbols "On"
+    
+        sanitize
+        {
+            "Address" 
+        }
+    
+        flags 
+        {
+            "NoRuntimeChecks",
+            "NoIncrementalLink"
+        }
